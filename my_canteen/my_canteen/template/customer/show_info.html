@@ -1,0 +1,24 @@
+{% extends '主页.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block title %}个人信息中心{% endblock %}
+{% block css %}
+<link href="{% static 'css/login.css' %}" rel="stylesheet"/>{% endblock %}
+
+{% block content %}
+<div class="container formback">
+    <div class="loginform jumbotron">
+        <h3>个人信息中心</h3>
+        <form class='form-group' action="/customer/show_info/" method="POST">
+            {% csrf_token %}
+            <div class="card-header">
+                <h5 align="left">用户名：{{ request.session.user_name }}</h5>
+                <h5 align="left">电话：{{ request.session.tel }}</h5>
+                <h5 align="left">学号：{{ request.session.studentID }}</h5>
+                <h5 align="left">校区：{{ request.session.campus }}</h5>
+                <button type="button" class="btn btn-default" href="/customer/info">重置</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
